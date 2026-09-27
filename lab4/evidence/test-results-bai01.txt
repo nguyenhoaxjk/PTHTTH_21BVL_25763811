@@ -1,0 +1,130 @@
+================================================================================
+MINH CHỨNG KIỂM THỬ BÀI 1: HOST VÀ URI INSPECTOR
+Lớp kiểm thử: network.HostUriInspector
+================================================================================
+
+LỆNH BIÊN DỊCH:
+javac -d out src/network/HostUriInspector.java
+
+--------------------------------------------------------------------------------
+A. BA CA HỢP LỆ (VALID CASES)
+--------------------------------------------------------------------------------
+
+[Ca hợp lệ 1: Cục bộ localhost với đầy đủ Port, Path, Query, Fragment]
+Lệnh chạy:
+java -cp out network.HostUriInspector localhost "http://localhost:8080/api/users?role=admin#section1"
+
+Kết quả:
+========== BÁO CÁO PHÂN TÍCH HOST VÀ URI ==========
+
+[1] THÔNG TIN HOST: localhost
+- IP: 127.0.0.1
+  Loại:       IPv4
+  Loopback:   true
+  Site local: false
+
+[2] THÔNG TIN URI: http://localhost:8080/api/users?role=admin#section1
+- Scheme:   http
+- Host:     localhost
+- Port:     8080
+- Path:     /api/users
+- Query:    role=admin
+- Fragment: section1
+
+
+[Ca hợp lệ 2: Domain Internet thực tế (example.com) giao thức HTTPS có Port mặc định ngầm định]
+Lệnh chạy:
+java -cp out network.HostUriInspector example.com "https://example.com/docs/intro"
+
+Kết quả:
+========== BÁO CÁO PHÂN TÍCH HOST VÀ URI ==========
+
+[1] THÔNG TIN HOST: example.com
+- IP: 93.184.215.14
+  Loại:       IPv4
+  Loopback:   false
+  Site local: false
+
+[2] THÔNG TIN URI: https://example.com/docs/intro
+- Scheme:   https
+- Host:     example.com
+- Port:     -1
+- Path:     /docs/intro
+- Query:    null
+- Fragment: null
+
+
+[Ca hợp lệ 3: Tên miền chứa nhiều địa chỉ IP (IPv4 & IPv6) và URI phức tạp]
+Lệnh chạy:
+java -cp out network.HostUriInspector google.com "https://www.google.com:443/search?q=java+socket#results"
+
+Kết quả:
+========== BÁO CÁO PHÂN TÍCH HOST VÀ URI ==========
+
+[1] THÔNG TIN HOST: google.com
+- IP: 142.250.204.46
+  Loại:       IPv4
+  Loopback:   false
+  Site local: false
+- IP: 2404:6800:4005:809::200e
+  Loại:       IPv6
+  Loopback:   false
+  Site local: false
+
+[2] THÔNG TIN URI: https://www.google.com:443/search?q=java+socket#results
+- Scheme:   https
+- Host:     www.google.com
+- Port:     443
+- Path:     /search
+- Query:    q=java+socket
+- Fragment: results
+
+
+--------------------------------------------------------------------------------
+B. BA CA LỖI (ERROR / EDGE CASES)
+--------------------------------------------------------------------------------
+
+[Ca lỗi 1: Thiếu tham số args (chỉ truyền 1 tham số hoặc không truyền)]
+Lệnh chạy:
+java -cp out network.HostUriInspector localhost
+
+Kết quả:
+Lỗi: Cần truyền đúng 2 tham số riêng biệt: <hostname> và <URI>
+Cú pháp: java network.HostUriInspector <hostname> <URI>
+Ví dụ:   java network.HostUriInspector localhost http://localhost:8080/api/users?id=1#profile
+
+
+[Ca lỗi 2: Hostname không phân giải được (tên miền không tồn tại)]
+Lệnh chạy:
+java -cp out network.HostUriInspector domain-khong-ton-tai-abcxyz.invalid "https://example.com/index.html"
+
+Kết quả:
+========== BÁO CÁO PHÂN TÍCH HOST VÀ URI ==========
+
+[1] THÔNG TIN HOST: domain-khong-ton-tai-abcxyz.invalid
+Lỗi host: Không thể phân giải hostname 'domain-khong-ton-tai-abcxyz.invalid'
+
+[2] THÔNG TIN URI: https://example.com/index.html
+- Scheme:   https
+- Host:     example.com
+- Port:     -1
+- Path:     /index.html
+- Query:    null
+- Fragment: null
+
+
+[Ca lỗi 3: Cú pháp URI bị sai (chứa ký tự khoảng trắng bất hợp pháp trong URL)]
+Lệnh chạy:
+java -cp out network.HostUriInspector localhost "http://invalid uri with spaces:8080"
+
+Kết quả:
+========== BÁO CÁO PHÂN TÍCH HOST VÀ URI ==========
+
+[1] THÔNG TIN HOST: localhost
+- IP: 127.0.0.1
+  Loại:       IPv4
+  Loopback:   true
+  Site local: false
+
+[2] THÔNG TIN URI: http://invalid uri with spaces:8080
+Lỗi URI: Cú pháp URI không hợp lệ (Illegal character in authority at index 7: http://invalid uri with spaces:8080)

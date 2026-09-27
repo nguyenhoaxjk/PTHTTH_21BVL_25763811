@@ -1,0 +1,48 @@
+================================================================================
+MINH CHỨNG KIỂM THỬ BÀI 2: TCP ĐỔI CHỮ SỐ THÀNH CHỮ
+Server: tcp.TcpDigitServer
+Client: tcp.TcpDigitClient
+================================================================================
+
+LỆNH BIÊN DỊCH:
+javac -d out src/tcp/TcpDigitServer.java src/tcp/TcpDigitClient.java
+
+LỆNH CHẠY:
+Terminal 1 (Server): java -cp out tcp.TcpDigitServer 5000
+Terminal 2 (Client): java -cp out tcp.TcpDigitClient localhost 5000
+
+--------------------------------------------------------------------------------
+CÁC CA KIỂM THỬ BIÊN BẮT BUỘC (MANDATORY TEST CASES)
+--------------------------------------------------------------------------------
+
+Client gõ: 0
+Server trả: không
+=> Đạt (biên dưới hợp lệ)
+
+Client gõ: 5
+Server trả: năm
+=> Đạt (giá trị giữa hợp lệ)
+
+Client gõ: 9
+Server trả: chín
+=> Đạt (biên trên hợp lệ)
+
+Client gõ: [Enter] (chuỗi rỗng)
+Server trả: ERR INVALID_DIGIT
+=> Đạt (ca biên chuỗi rỗng)
+
+Client gõ: 10
+Server trả: ERR INVALID_DIGIT
+=> Đạt (ca biên nhiều hơn 1 chữ số)
+
+Client gõ: a
+Server trả: ERR INVALID_DIGIT
+=> Đạt (ca biên ký tự không phải chữ số)
+
+Client gõ:  5  (có khoảng trắng trước và sau)
+Server trả: ERR INVALID_DIGIT
+=> Đạt (ca biên dữ liệu chứa khoảng trắng)
+
+Client gõ: QUIT
+Server trả: OK BYE
+=> Đạt (kết thúc phiên kết nối thành công)
