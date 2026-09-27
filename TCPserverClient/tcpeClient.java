@@ -3,7 +3,7 @@ import java.net.Socket;
 
 public class tcpeClient {
     public final static String serverIP = "127.0.0.1";
-    public final static int serverPort = 7;
+    public final static int serverPort = 6789;
 
     public static void main(String[] args) throws InterruptedException, IOException {
         Socket s = null;
