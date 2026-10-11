@@ -1,0 +1,3 @@
+Chào mừng bạn đến với môn Phát triển hệ thống tích hợp (IUH)!
+Giao thức truyền file TCP có kiểm tra tính toàn vẹn bằng SHA-256.
+Hỗ trợ đầy đủ tiếng Việt có dấu và ký tự Unicode đặc biệt: ☘ ✪ ★.

@@ -1,0 +1,4 @@
+[2026-10-11 14:30:50] [/127.0.0.1:51726] Tin nhắn số 1: Xin chào server!
+[2026-10-11 14:30:50] [/127.0.0.1:51726] Tin nhắn số 2: HET TIEN ROI (chứa từ HET nhưng không bị ngắt kết nối)
+[2026-10-11 14:34:53] [/127.0.0.1:50255] Tin nhắn số 1: Xin chào server!
+[2026-10-11 14:34:53] [/127.0.0.1:50255] Tin nhắn số 2: HET TIEN ROI (chứa từ HET nhưng không bị ngắt kết nối)

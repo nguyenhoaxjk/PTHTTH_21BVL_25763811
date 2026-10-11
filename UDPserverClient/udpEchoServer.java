@@ -14,13 +14,10 @@ public class udpEchoServer {
                     DatagramPacket receivePacket = new DatagramPacket(receiveBuffer, receiveBuffer.length);
                     ds.receive(receivePacket);
 
-                    // lay dlieu trong receivePacket --->...
                     String receiveData = new String(receivePacket.getData(), receivePacket.getOffset(),
                             receivePacket.getLength());
                     System.out.println("Server nhan: " + receiveData);
 
-                    // xu ly???
-                    // tao goi tin chua dliey sendPacket to client
                     byte[] sendBuffer = receiveData.getBytes();
                     DatagramPacket dp = new DatagramPacket(sendBuffer, sendBuffer.length, receivePacket.getAddress(),
                             receivePacket.getPort());

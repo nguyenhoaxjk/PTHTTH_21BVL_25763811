@@ -6,13 +6,10 @@ import java.net.Socket;
 public class t_Processing extends Thread {
     private Socket s;
 
-    // Nhận socket kết nối từ Server truyền sang
     public t_Processing(Socket s) {
         this.s = s;
     }
 
-    // Phương thức run() sẽ chạy riêng biệt trên một luồng độc lập khi gọi
-    // tp.start()
     @Override
     public void run() {
         try {
