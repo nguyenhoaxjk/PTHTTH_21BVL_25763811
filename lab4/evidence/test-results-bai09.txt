@@ -1,0 +1,60 @@
+================================================================================
+MINH CHỨNG KIỂM THỬ BÀI 9: MULTICAST THÔNG BÁO
+Sender: bai9.MulticastSender
+Receiver: bai9.MulticastReceiver
+Kiểm thử tự động: bai9.MulticastTest
+================================================================================
+
+LỆNH BIÊN DỊCH:
+javac -d lab4 lab4/bai9/*.java
+
+LỆNH CHẠY KIỂM THỬ TỰ ĐỘNG:
+java -cp lab4 bai9.MulticastTest
+
+LỆNH CHẠY THỦ CÔNG:
+Terminal 1 (Receiver 1): java -cp lab4 bai9.MulticastReceiver Receiver-1 239.255.0.1 5009
+Terminal 2 (Receiver 2): java -cp lab4 bai9.MulticastReceiver Receiver-2 239.255.0.1 5009
+Terminal 3 (Sender):     java -cp lab4 bai9.MulticastSender "Thông báo khẩn cấp từ phòng đào tạo!" 239.255.0.1 5009
+
+--------------------------------------------------------------------------------
+KẾT QUẢ THỰC THI BỘ KIỂM THỬ TỰ ĐỘNG (AUTOMATED TEST LOG)
+--------------------------------------------------------------------------------
+======================================================================
+BỘ KIỂM THỬ TỰ ĐỘNG BÀI 9 - MULTICAST THÔNG BÁO (239.255.0.1)
+======================================================================
+
+Sử dụng NetworkInterface: [ethernet_32772] VMware Virtual Ethernet Adapter for VMnet1
+✔ Receiver 1 đã joinGroup thành công trên ethernet_32772
+✔ Receiver 2 đã joinGroup thành công trên ethernet_32772
+
+-------------------------------------------------------------
+BẮT ĐẦU SENDER PHÁT THÔNG BÁO TỚI NHÓM MULTICAST
+-------------------------------------------------------------
+
+[Gửi gói tin 1/3]: "THONG_BAO_1: Chao mung cac ban sinh vien den voi buoi thuc hanh Socket Java!"
+[15:17:50.075] [SENDER] Đã phát tới 239.255.0.1:5009 trên card [ethernet_32772] (76 bytes): "THONG_BAO_1: Chao mung cac ban sinh vien den voi buoi thuc hanh Socket Java!"
+  [Receiver 1 nhận được]: THONG_BAO_1: Chao mung cac ban sinh vien den voi buoi thuc hanh Socket Java!
+  [Receiver 2 nhận được]: THONG_BAO_1: Chao mung cac ban sinh vien den voi buoi thuc hanh Socket Java!
+
+[Gửi gói tin 2/3]: "THONG_BAO_2: Tiếng Việt UTF-8: Hệ thống máy chủ bảo trì vào lúc 22:00 hôm nay. ★ ✪ ☘"
+[15:17:50.282] [SENDER] Đã phát tới 239.255.0.1:5009 trên card [ethernet_32772] (107 bytes): "THONG_BAO_2: Tiếng Việt UTF-8: Hệ thống máy chủ bảo trì vào lúc 22:00 hôm nay. ★ ✪ ☘"
+  [Receiver 1 nhận được]: THONG_BAO_2: Tiếng Việt UTF-8: Hệ thống máy chủ bảo trì vào lúc 22:00 hôm nay. ★ ✪ ☘
+  [Receiver 2 nhận được]: THONG_BAO_2: Tiếng Việt UTF-8: Hệ thống máy chủ bảo trì vào lúc 22:00 hôm nay. ★ ✪ ☘
+
+[Gửi gói tin 3/3]: "THONG_BAO_3: [KHẨN CẤP] Điểm thi giữa kỳ môn PTHTTH đã được cập nhật trên cổng sinh viên!"
+[15:17:50.487] [SENDER] Đã phát tới 239.255.0.1:5009 trên card [ethernet_32772] (115 bytes): "THONG_BAO_3: [KHẨN CẤP] Điểm thi giữa kỳ môn PTHTTH đã được cập nhật trên cổng sinh viên!"
+  [Receiver 1 nhận được]: THONG_BAO_3: [KHẨN CẤP] Điểm thi giữa kỳ môn PTHTTH đã được cập nhật trên cổng sinh viên!
+  [Receiver 2 nhận được]: THONG_BAO_3: [KHẨN CẤP] Điểm thi giữa kỳ môn PTHTTH đã được cập nhật trên cổng sinh viên!
+
+✔ Receiver 1 đã leaveGroup an toàn.
+✔ Receiver 2 đã leaveGroup an toàn.
+
+=============================================================
+KẾT QUẢ ĐÁNH GIÁ KIỂM THỬ BÀI 9
+=============================================================
+Receiver 1: Nhận được 3/3 thông điệp -> ✔ PASS
+Receiver 2: Nhận được 3/3 thông điệp -> ✔ PASS
+Kiểm tra tính toàn vẹn nội dung UTF-8 của cả 2 Receiver: ✔ CHÍNH XÁC 100%
+
+🎉 BÀI 9: TẤT CẢ CÁC TIÊU CHÍ KIỂM THỬ ĐỀU ĐẠT (PASS)!
+================================================================================
